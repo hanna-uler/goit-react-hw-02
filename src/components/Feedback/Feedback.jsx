@@ -2,7 +2,7 @@ import css from "./Feedback.module.css";
 
 export default function Feedback({ feedbacks, total, positive }) {
     return (
-        <ul>
+        <ul className={css.feedbackList}>
             <li>Good: {feedbacks.good}</li>
             <li>Neutral: {feedbacks.neutral}</li>
             <li>Bad: {feedbacks.bad}</li>
