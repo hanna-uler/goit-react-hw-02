@@ -30,12 +30,13 @@ export default function App() {
     }
 
     const totalFeedback = values.good + values.neutral + values.bad;
+    const positiveFeedbs = Math.round((values.good / totalFeedback) * 100);
 
     return (
         <div className={css.container}>
             <Description />
             <Options onUpdate={updateFeedback} feedbacksPresent={totalFeedback}/>
-            {totalFeedback > 0 ? <Feedback feedbacks={values}/> : <Notification/>}
+            {totalFeedback > 0 ? <Feedback feedbacks={values} total={totalFeedback} positive={positiveFeedbs}/> : <Notification/>}
         </div>
     )
     
