@@ -1,3 +1,21 @@
 .feedbackList {
   list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  text-align: left;
+  max-width: 280px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+  .feedbackList {
+    font-size: 1.1rem;
+  }
 }
