@@ -1,5 +1,5 @@
 import css from "./App.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Description from "../Description/Description";
 import Feedback from "../Feedback/Feedback";
 import Options from "../Options/Options";
@@ -7,12 +7,19 @@ import Notification from "../Notification/Notification";
 
 
 export default function App() {
-    const [values, setValues] = useState({
-        good: 0,
-        neutral: 0,
-        bad: 0
+    const [values, setValues] = useState(() => {
+        let savedFeedbData = window.localStorage.getItem("saved-feedbs");
+        if (savedFeedbData !== null) {
+            return JSON.parse(savedFeedbData);
+        } else {
+            return ({
+                    good: 0,
+                    neutral: 0,
+                    bad: 0
+                })
+        }
     })
- 
+
     const updateFeedback = feedbackType => {
         if (feedbackType === "good") {
             setValues({...values, good: values.good + 1});
@@ -28,6 +35,10 @@ export default function App() {
     });
         }
     }
+
+    useEffect(() => {
+        window.localStorage.setItem("saved-feedbs", JSON.stringify(values))
+    }, [values])
 
     const totalFeedback = values.good + values.neutral + values.bad;
     const positiveFeedbs = Math.round((values.good / totalFeedback) * 100);
